@@ -4,7 +4,7 @@
 #define NOT_A_NUMBER -1
 
 struct Triangle
-{
+{ 
     double s1, s2, s3;
     
 

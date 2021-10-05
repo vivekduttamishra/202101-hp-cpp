@@ -1,0 +1,37 @@
+MyObject::MyObject(global object 1) called
+MyObject::MyObject(static global object) called
+MyObject::MyObject(global object 2) called
+main function starts...
+MyObject::MyObject(Main Object 1) called
+MyObject::MyObject(Main Object 2) called
+MyObject::MyObject(Main Static Object) called
+MyObject::MyObject(Dynamic Object 1) called
+MyObject::MyObject(Dynamic Object 2) called
+MyObject::MyObject(for loop call me param) called
+Copy Constructor Called with MyObject(for loop call me param)
+MyObject::MyObject(callMe static object) called
+callMe ends
+Destructor called for MyObject(valued modified in callMe)
+in callMeRef: for loop call me param
+Destructor called for MyObject(for loop call me param)
+MyObject::MyObject(for loop call me param) called
+Copy Constructor Called with MyObject(for loop call me param)
+callMe ends
+Destructor called for MyObject(valued modified in callMe)
+in callMeRef: for loop call me param
+Destructor called for MyObject(for loop call me param)
+MyObject::MyObject(for loop call me param) called
+Copy Constructor Called with MyObject(for loop call me param)
+callMe ends
+Destructor called for MyObject(valued modified in callMe)
+in callMeRef: for loop call me param
+Destructor called for MyObject(for loop call me param)
+Destructor called for MyObject(Dynamic Object 1)
+main function ends...
+Destructor called for MyObject(Main Object 2)
+Destructor called for MyObject(Main Object 1)
+Destructor called for MyObject(callMe static object)
+Destructor called for MyObject(Main Static Object)
+Destructor called for MyObject(global object 2)
+Destructor called for MyObject(static global object)
+Destructor called for MyObject(global object 1)
