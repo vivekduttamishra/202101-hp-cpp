@@ -19,6 +19,8 @@ struct Triangle
     double perimeter();
 
     double area();
+
+    
 };
 
 Triangle *createTriangle(double s1, double s2, double s3);
