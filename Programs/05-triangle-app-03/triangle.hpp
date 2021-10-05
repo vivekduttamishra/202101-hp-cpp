@@ -5,7 +5,7 @@ struct Triangle
     double s1, s2, s3;
 
     //implicit inline function
-    bool isValid()
+    bool isValid() const
     {
         return s1 > 0 && s2 > 0 && s3 > 0 && 
                 s1 + s2 > s3 && 
@@ -14,7 +14,7 @@ struct Triangle
     }
 
     //functions are declared outside
-    void show(const char *prefix = "Triangle");
+    void show(const char *prefix = "Triangle") const;
 
     double perimeter();
 

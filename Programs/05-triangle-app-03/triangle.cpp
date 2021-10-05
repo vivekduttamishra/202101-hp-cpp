@@ -22,8 +22,8 @@ Triangle*  createTriangle(double s1,double s2,double s3){
 
 double Triangle::perimeter()
 {
-    if (isValid())
-        return s1 + s2 + s3;
+    if (this->isValid())
+        return this->s1 +this-> s2 + this-> s3;
     else
         return NAN;
 }
@@ -37,9 +37,10 @@ double Triangle::area()
         return sqrt(s * (s - s1) * (s - s2) * (s - s3));
 }
 
-void Triangle::show(const char *prefix)
+void Triangle::show(const char *prefix) const
 {
  
+    //isValid should also be a const to keep our promise
     if (isValid())
     {
         cout << prefix << " : <"

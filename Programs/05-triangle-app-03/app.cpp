@@ -3,8 +3,9 @@
 using namespace std;
 
 void test(Triangle *triangle, const char * prefix="Test Triangle"){
-    if(!triangle){
-        cout<<"invalid triangle"<<endl;
+    if(triangle==NULL){
+        cout<<"invalid triangle "<<prefix<<endl;
+        return;
     }
     //we can safely use the triangle
     Triangle &t=*triangle; 
@@ -27,6 +28,12 @@ int main(int argc, char const *argv[])
    Triangle *t1= createTriangle(3,4,5);
    test(t1,"t1");
 
+    const Triangle *t4= createTriangle(3,4,5);
+
+    //I expect t4 not change
+    t4->show("A Constant Triangle");
+
+
    //Triangle t2={3,4,12};
    Triangle *t2= createTriangle(3,4,12);
    test(t2,"t2");
@@ -34,6 +41,8 @@ int main(int argc, char const *argv[])
     //Triangle t3={-1,2,2};
     Triangle *t3=createTriangle(-1,2,2);
     test(t3,"t3");
+
+   
 
     return 0; //NORMAL SHUTDOWN WITHOUT ANY ERROR (0 ERROR)
 }
