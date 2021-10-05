@@ -18,5 +18,11 @@ int main(int argc, char const *argv[])
     Triangle t2={1,1,1};
     test(t2,"t2");
 
+    Triangle t3={3,4,12}; //not a valid triangle
+    test(t3,"t3");
+
+    Triangle t4={-1, 150, -8} ; // we can pass any 3 int
+
+
     return 0;
 }
