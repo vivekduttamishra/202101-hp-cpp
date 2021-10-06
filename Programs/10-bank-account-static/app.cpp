@@ -26,7 +26,7 @@ void creditInterestTests(){
     //BankAccount::interestRate=interestRate;
     BankAccount::setInterestRate(interestRate);
 
-    BankAccount a1(1,"vivek","password",amount);
+    BankAccount a1("vivek","password",amount);
 
     double expectedBalanceAfterInterestCredit= amount*(1+ interestRate/1200);
 
@@ -44,7 +44,7 @@ void creditInterestTests(){
 void withdrawTests(){
 
     string password="p@ss";
-    BankAccount a1= BankAccount(1,"vivek",password,50000);
+    BankAccount a1= BankAccount("vivek",password,50000);
     
 
     testWithdraw(a1, -2000, password, ERROR_INVALID_DENOMINATION, "Can't withdraw Negative Amount" );
@@ -64,8 +64,8 @@ void testInterestRate(){
     cout<<"sizeof(BankAccount) = "<<sizeof(BankAccount)<<endl;    
     cout<<"BankAccount::interestRate = "<<BankAccount::getInterestRate()<<endl;
     
-    BankAccount a1(1,"Vivek","p@ss",50000);
-    BankAccount a2(1,"Sanjay","p@ss",50000);
+    BankAccount a1("Vivek","p@ss",50000);
+    BankAccount a2("Sanjay","p@ss",50000);
 
     //setting interest rate for BankAccount changes it for everyone
     //BankAccount::interestRate=15; //private
@@ -91,9 +91,19 @@ void testInterestRate(){
     
 }
 
+void testAccountNumberGeneration(){
+
+    BankAccount a1("Vivek","p@ss",50000);
+    BankAccount a2("Sanjay","great",25000);
+
+    cout<<a1.getAccountNumber()<<endl
+        <<a2.getAccountNumber()<<endl;
+
+}
 
 int main(){
-    
+
+    testAccountNumberGeneration();    
     testInterestRate();
    // creditInterestTests();
     //withdrawTests();

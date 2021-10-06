@@ -2,3 +2,5 @@
 
 double BankAccount::interestRate=12; //allocate memory in global with scope
 
+int BankAccount::accountCount=0;
+

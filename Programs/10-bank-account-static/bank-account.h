@@ -16,6 +16,7 @@ class BankAccount
     string password;
     double balance;
     static double interestRate; //memory not allocated here
+    static int accountCount; //UPDATE#2 add a BankAccount level counter
     
 
     void setPassword(string newPassword)
@@ -50,10 +51,13 @@ public:
     
 
     //UPDATE#1  Interest Rate Removed from constructor parameter
-    BankAccount(int accountNumber, string name, string password, double balance)
+    //UPDATE#2  Remove accountNumber as a prameter
+    BankAccount(string name, string password, double balance)
     {
         //initialize fields
-        this->accountNumber = accountNumber;
+        //this->accountNumber = accountNumber; //UPDATE#2 remove user defined value
+
+        this->accountNumber = ++ accountCount;  //UPDATE#2 auto generate account number
         this->name = name;
         //this->password = passwords;
         setPassword(password);
