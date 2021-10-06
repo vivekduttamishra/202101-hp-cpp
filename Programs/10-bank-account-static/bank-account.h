@@ -12,10 +12,11 @@ class BankAccount
 {
     //fields
     int accountNumber;
-    string name;
+    string name; 
     string password;
     double balance;
-    static double interestRate;
+    static double interestRate; //memory not allocated here
+    
 
     void setPassword(string newPassword)
     {
@@ -27,7 +28,29 @@ class BankAccount
     }
 
 public:
-    BankAccount(int accountNumber, string name, string password, double balance, double interestRate)
+
+
+    static double getInterestRate()  { return interestRate; }
+    static int setInterestRate(double newInterestRate)
+    {
+        double delta = interestRate / 10; //10% of current value
+        double min = interestRate - delta;
+        double max = interestRate + delta;
+
+        if (newInterestRate >= min && newInterestRate <= max )
+        {
+            interestRate = newInterestRate;
+            return 1; //success
+        }
+        else
+            return 0; //failure
+    }
+
+ 
+    
+
+    //UPDATE#1  Interest Rate Removed from constructor parameter
+    BankAccount(int accountNumber, string name, string password, double balance)
     {
         //initialize fields
         this->accountNumber = accountNumber;
@@ -35,7 +58,7 @@ public:
         //this->password = passwords;
         setPassword(password);
         this->balance = balance;
-        this->interestRate = interestRate;
+        //this->interestRate = interestRate;  //UPDATE#1  interest rate not used in the constructor
     }
     //Methods
     bool deposit(double amount)
@@ -101,24 +124,7 @@ public:
     //Accessors of fields
     int getAccountNumber() const { return accountNumber; }
     //no setAccountNumber as account number is imutable
-
-    double getInterestRate() const { return interestRate; }
-    int setInterestRate(double interestRate)
-    {
-        double delta = this->interestRate / 10; //10% of current value
-        double min = this->interestRate - delta;
-        double max = this->interestRate + delta;
-
-        if (interestRate >= min && interestRate <= max )
-        {
-            this->interestRate = interestRate;
-            return 1; //success
-        }
-        else
-            return 0; //failure
-    }
-
-    string getName() const { return name; }
+   string getName() const { return name; }
     bool setName(string name)
     {
         //find the last word in both names and set new name if the last name matches

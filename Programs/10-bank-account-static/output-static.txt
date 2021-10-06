@@ -1,0 +1,14 @@
+sizeof(BankAccount) = 64
+
+BankAccount::interestRate = 12
+
+Account Number:1
+Name:Vivek
+Balance:50000
+Interest Rate:14
+
+Account Number:1
+Name:Sanjay
+Balance:50000
+Interest Rate:14
+

@@ -1,0 +1,12 @@
+
+
+Account Number:1
+Name:Vivek
+Balance:50000
+Interest Rate:12
+
+Account Number:1
+Name:Sanjay
+Balance:50000
+Interest Rate:14
+

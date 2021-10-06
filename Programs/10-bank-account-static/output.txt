@@ -1,0 +1,12 @@
+sizeof(BankAccount) = 64
+BankAccount::interestRate = 12
+After Changing Rate using BankAccount::interestRate =15
+BankAccount::interestRate = 13
+a1.interestRate = 13
+a2.interestRate = 13
+
+After Changing Rate using a1.interestRate=18
+BankAccount::interestRate = 13
+a1.interestRate = 13
+a2.interestRate = 13
+

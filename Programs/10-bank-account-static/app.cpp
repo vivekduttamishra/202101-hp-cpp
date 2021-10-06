@@ -22,7 +22,11 @@ void testWithdraw(BankAccount &account, double amount, string password, int expe
 void creditInterestTests(){
     double amount=50000;
     double interestRate=12;
-    BankAccount a1(1,"vivek","password",amount,interestRate);
+    
+    //BankAccount::interestRate=interestRate;
+    BankAccount::setInterestRate(interestRate);
+
+    BankAccount a1(1,"vivek","password",amount);
 
     double expectedBalanceAfterInterestCredit= amount*(1+ interestRate/1200);
 
@@ -40,7 +44,7 @@ void creditInterestTests(){
 void withdrawTests(){
 
     string password="p@ss";
-    BankAccount a1= BankAccount(1,"vivek",password,50000,12);
+    BankAccount a1= BankAccount(1,"vivek",password,50000);
     
 
     testWithdraw(a1, -2000, password, ERROR_INVALID_DENOMINATION, "Can't withdraw Negative Amount" );
@@ -55,23 +59,44 @@ void withdrawTests(){
     
 }
 
-void testAccountCreation(){
-    BankAccount a1(1,"Vivek","p@ss",50000,12);
+void testInterestRate(){
 
-    BankAccount a2(1,"Sanjay","p@ss",50000,14);
+    cout<<"sizeof(BankAccount) = "<<sizeof(BankAccount)<<endl;    
+    cout<<"BankAccount::interestRate = "<<BankAccount::getInterestRate()<<endl;
+    
+    BankAccount a1(1,"Vivek","p@ss",50000);
+    BankAccount a2(1,"Sanjay","p@ss",50000);
 
-    a1.show();
+    //setting interest rate for BankAccount changes it for everyone
+    //BankAccount::interestRate=15; //private
 
-    a2.show();
+    BankAccount::setInterestRate(13);
+    
+
+    cout<<"After Changing Rate using BankAccount::interestRate =15"<<endl;
+    cout<<"BankAccount::interestRate = "<<BankAccount::getInterestRate()<<endl;
+    cout<<"a1.interestRate = "<<a1.getInterestRate()<<endl;
+    cout<<"a2.interestRate = "<<a2.getInterestRate()<<endl<<endl;
+
+    a1.setInterestRate(18);
+
+    cout<<"After Changing Rate using a1.interestRate=18"<<endl;
+    cout<<"BankAccount::interestRate = "<<BankAccount::getInterestRate()<<endl;
+    cout<<"a1.interestRate = "<<a1.getInterestRate()<<endl;
+    cout<<"a2.interestRate = "<<a2.getInterestRate()<<endl<<endl;
+
+    
+    
+    
     
 }
 
 
 int main(){
     
-    testAccountCreation();
-    creditInterestTests();
-    withdrawTests();
+    testInterestRate();
+   // creditInterestTests();
+    //withdrawTests();
     
     return 0;
 }
