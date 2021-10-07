@@ -30,6 +30,7 @@ int main(){
         Tiger * tiger = dynamic_cast<Tiger *>(animals[i]);
         if(tiger!=NULL)
             tiger->hunt();
+            
         cout<<endl<<endl;
         
     }
