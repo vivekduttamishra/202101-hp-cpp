@@ -9,7 +9,7 @@ int main(){
    
     Animal * animals[]={
 
-        new Animal,
+        //new Animal,
         new Tiger,
         new Fish,
         NULL
@@ -20,6 +20,16 @@ int main(){
         animals[i]->move();
         animals[i]->eat();
 
+        //animals[i]->hunt();  //no all animals hunt
+
+        //Tiger * tiger= animals[i];  //animals[i] may even be a fish
+
+        //we can maually typecast
+        //Tiger * tiger = (Tiger *) animals[i];
+
+        Tiger * tiger = dynamic_cast<Tiger *>(animals[i]);
+        if(tiger!=NULL)
+            tiger->hunt();
         cout<<endl<<endl;
         
     }
