@@ -214,10 +214,28 @@ namespace conceptarchitect::data
             return result;
         }
 
-
+    friend ostream & operator<<(ostream & os, const LinkedList &list);
 
 
     };
+
+
+    ostream & operator<<(ostream & os, const LinkedList &list){
+        
+        if(list.size()==0)
+            return os<<"(empty)";
+
+        os<<"(\t";
+        // for(int i=0;i<list.size();i++)
+        //     os<< list[i] <<"\t";  //CAUSES A PERFORMANCE ISSUE BECAUSE OF LINEAR NAURE
+
+        for(LinkedList::Node * n= list.first; n ; n=n->next)
+            os<< n->value <<"\t";  
+
+        os<<")";
+        return os;
+    }
+   
 
     inline LinkedList operator * (const int value, const LinkedList & list)
     {
@@ -238,5 +256,6 @@ namespace conceptarchitect::data
         return result;
     }
 
-   
+
+    
 }
