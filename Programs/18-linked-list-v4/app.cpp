@@ -5,6 +5,7 @@
 #include "list.h"
 using namespace std;
 using namespace conceptarchitect::data;
+#include "utils.h" //isPrime
 
 
 
@@ -115,7 +116,7 @@ void testPerformance(){
 }
 
 
-int main()
+void testFindStrategy()
 {
 
     LinkedList list;
@@ -128,11 +129,85 @@ int main()
 
      cout<<"list.average() = "<<list.average()<<endl;  //sum all items
 
-     cout<<"list.findEvens() = "<<list.findEvens()<<endl;  // LinkedList (2 4 18 40)
+    //  cout<<"list.findEvens() = "<<list.findEvens()<<endl;  // LinkedList (2 4 18 40)
 
-     cout<<"list.findPrimes() = "<<list.findPrimes()<<endl;  //LinkedList (2, 5, 7, 11)
+    //  cout<<"list.findPrimes() = "<<list.findPrimes()<<endl;  //LinkedList (2, 5, 7, 11)
+
+    cout<<"list.find(isPrime) = "<<list.find(isPrime)<<endl;
+    
+    auto isOdd= [] (const Data & n) { return n%2!=0 ;};
+
+    
+
+    cout<<"list.find(isOdd) = "<<list.find(isOdd)<<endl;
     
     
+    cout<<"list.find([](const int & x){ return x%2==0;}) = "<<list.find([](auto x){ return x%2==0;})<<endl;
+    
+}
+
+void testIteratorPerformance(){
+     LinkedList list;
+    
+    int max=100000;
+    
+    
+    cout<<"program started. adding "<<max<<" to list...";
+    time_t start,end;
+    time(&start);
+    for(int i=0;i<max;i++){
+        list.add(1);
+    }
+    time(&end);
+    cout<<"added  "<<list.size()<<"items in "<<(end-start)<<" s"<<endl;
+
+
+    unsigned long sum=0;
+    cout<<"trying to sum all values...";
+    time(&start);
+    
+    // for(int i=0;i<max;i++)
+    //     sum+=list[i];  //accessing each item
+
+   
+    for( auto ptr = list.begin(); ptr!= list.end() ;  ++ptr){        
+        sum+=*ptr;
+    }
+
+    time(&end);
+    cout<<"sum calcualated "<< sum << "in "<<(end-start)<< "s"<<endl;
+
+}
+
+
+
+
+
+int main(){
+
+
+    testIteratorPerformance();
+
+    LinkedList list;
+    list<< 2 << 3 << 5 << 9 << 8;
+
+
+    LinkedList::SmartPointer ptr= list.begin();    
+
+    while(ptr){
+        
+        cout<< *ptr <<endl;
+        ptr++;
+
+    }
+
+    LinkedList::SmartPointer x=list.begin();
+    cout<<"\naccessing all items from 0 to 4"<<endl;
+    while(x != list.at(2)){
+        cout<< *x <<endl;
+        x++;
+    }
+
    
     return 0;
 }

@@ -3,13 +3,15 @@
 #include <exception>
 using namespace std;
 #include "index-error.h"
-#include "utils.h"
+//#include "utils.h"
 
 #define Data int
 #define POS_END -1
 
 namespace conceptarchitect::data
 {
+
+    typedef bool (*Matcher) (const Data &);
 
     class LinkedList
     {
@@ -240,29 +242,101 @@ namespace conceptarchitect::data
             return result / size();
         }
 
-        LinkedList findEvens() const
-        {
-            LinkedList  result ;
+        // LinkedList findEvens() const
+        // {
+        //     LinkedList  result ;
 
-            for (Node *n = first; n; n = n->next)
+        //     for (Node *n = first; n; n = n->next)
+        //     {
+        //         if(n->value%2==0)
+        //             result << n->value;
+        //     }
+        //     return result;
+        // }
+
+        // LinkedList findPrimes() const
+        // {
+        //     LinkedList  result ;
+
+        //     for (Node *n = first; n; n = n->next)
+        //     {
+        //         if(isPrime(n->value))
+        //             result << n->value;
+        //     }
+        //     return result;
+        // }
+
+
+        LinkedList find(Matcher match)
+        {
+            LinkedList result;
+
+            for(Node * n=first; n; n=n->next)
             {
-                if(n->value%2==0)
+                if(match(n->value))
                     result << n->value;
             }
+
             return result;
         }
+    
+    
+        class SmartPointer{
 
-        LinkedList findPrimes() const
-        {
-            LinkedList  result ;
-
-            for (Node *n = first; n; n = n->next)
-            {
-                if(isPrime(n->value))
-                    result << n->value;
+            Node * ptr; //private
+            public:
+            SmartPointer(Node * ptr){
+                this->ptr=ptr;
             }
-            return result;
+
+            Data & operator *(){
+                return ptr->value;
+            }
+
+            //prefix in nature
+            SmartPointer & operator++(){
+                if(ptr)
+                    ptr=ptr->next;
+
+                return *this;
+            }
+
+            //postfix increment take one additional argument
+            //we never pass this argument             
+            SmartPointer & operator++(int dummy){
+                return ++(*this);
+            }
+
+            bool operator==(const SmartPointer &other) const{ 
+                return ptr==other.ptr;
+            }
+
+            bool operator!=(const SmartPointer &other) const{
+                return ptr!=other.ptr;
+            }
+
+            operator bool(){
+                return ptr!=NULL;
+            }
+
+        };
+    
+
+        SmartPointer begin(){
+            return SmartPointer(first);
         }
+
+        SmartPointer end(){
+            return SmartPointer(NULL);
+        }
+
+        SmartPointer at(int pos){
+            Node * n= locate(pos);
+
+            return SmartPointer(n);
+
+        }
+   
     };
 
     ostream &operator<<(ostream &os, const LinkedList &list)

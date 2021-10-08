@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-bool isPrime(int x){
+bool isPrime(const int &x){
 
     if(x<2)
         return false;
