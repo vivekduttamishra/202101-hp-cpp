@@ -3,7 +3,7 @@
 using namespace std;
 #include "list.h"
 using namespace conceptarchitect::data;
-
+#include "algorithm.h"
 
 
 struct Book
@@ -42,9 +42,36 @@ inline void populateBookList(LinkedList<Book> & books){
 inline void displayBooks(LinkedList<Book> &books, string title="Books")
 {
     cout<<title<<endl;
+
     cout<<"Price\tRating\tAuthor\tTitle"<<endl;
-    for(auto p = books.begin(); p != books.end(); p++)
-        cout<< *p ;
+
+    forEach(books.begin(), books.end(), [](auto book){cout<< book;})   ; 
+
+    // for(auto p = books.begin(); p != books.end(); p++)
+    //     cout<< *p ;
 
     cout<<endl<<endl;
 }
+
+class BookByAuthor{
+    string authorName;
+    public:
+    BookByAuthor(string authorName):authorName(authorName){}
+
+    bool operator()(const Book &book){
+        return book.author==authorName;
+    }
+};
+
+
+struct PriceRange{
+    int min,max;
+    bool operator()(const Book &book){
+        return book.price>=min && book.price<max;
+    }
+};
+
+
+
+
+

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <exception>
+#include <initializer_list>
 using namespace std;
 #include "index-error.h"
 //#include "utils.h"
@@ -68,6 +69,8 @@ namespace conceptarchitect::data
         }
 
     public:
+
+
         LinkedList()
         {
             first = NULL;
@@ -75,13 +78,19 @@ namespace conceptarchitect::data
             count = 0;
         }
 
-        LinkedList(const LinkedList &other)
+        LinkedList(std::initializer_list<Data> values): LinkedList()
+        {
+            for(auto value : values)
+                add(value);
+        }
+
+        LinkedList(const LinkedList &other) : LinkedList()   //calls my other constructor
         {
             //what you write here in private doesn't matter
             //it can even be blank.
-            first = NULL;
-            last = NULL;
-            count = 0;
+            // first = NULL;
+            // last = NULL;
+            // count = 0;
 
             addAll(other);
         }
@@ -100,7 +109,7 @@ namespace conceptarchitect::data
             clear();
         }
 
-        void clear()
+        LinkedList& clear()
         {
             Node *n = first;
 
@@ -114,6 +123,7 @@ namespace conceptarchitect::data
             first = NULL;
             last = NULL;
             count = 0;
+            return *this;
         }
 
         // add at the end of the list

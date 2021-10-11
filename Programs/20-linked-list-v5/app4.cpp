@@ -7,17 +7,23 @@
 using namespace std;
 using namespace conceptarchitect::data;
 #include "utils.h" //isPrime
-#include "book.h"
+#include "algorithm.h"
 
+template<typename T>
+void printWide(T value){
+    cout<<value<<"\t";
+}
 
 int main(){
 
-   LinkedList<Book> books;
+    LinkedList<int> numbers{2,3,9,11,8,2,5};
 
-   populateBookList(books);
 
-   displayBooks(books, "Original List");
+    cout<<"numbers: "<<numbers<<endl;
 
-   
+
+
+
+
     return 0;
 }
