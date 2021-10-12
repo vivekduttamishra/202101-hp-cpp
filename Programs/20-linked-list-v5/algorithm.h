@@ -30,6 +30,26 @@ int find(SmartPointer start, SmartPointer end, Matcher matcher,Container & resul
     return result.size();
 }
 
+template<typename T>
+LinkedList<T> createList(T value){
+    return LinkedList<T>{};
+}
+
+template<typename Ptr,typename Matcher>
+decltype(auto) search(Ptr start, Ptr end, Matcher matcher)
+{
+    auto result= createList(*start); //create list to hold this type of value
+
+   //LinkedList<decltype(*start)> result= LinkedList<decltype(*start)>();
+
+    for(auto ptr=start;ptr!=end;ptr++)
+        if(matcher(*ptr))
+            result<< *ptr;
+    
+    return result;
+}
+
+
 
 template<typename SmartPointer, typename DoubleFinderFunction>
 double average0(SmartPointer first, SmartPointer last, DoubleFinderFunction toDouble)

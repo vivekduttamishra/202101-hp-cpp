@@ -16,14 +16,20 @@ void printWide(T value){
 
 int main(){
 
-    LinkedList<int> numbers{2,3,9,11,8,2,5};
+    int data[]={2,3,9,11,8,2,5};
+
+    LinkedList<int> numbers;
+
+    forEach( data, data+7, [&numbers](auto d){numbers.add(d);});
 
 
     cout<<"numbers: "<<numbers<<endl;
 
 
+    auto result = search( begin(numbers), end(numbers), [](auto number){ return number>5;});
 
-
+    for(auto value : result)
+        cout<< value<<endl;
 
     return 0;
 }

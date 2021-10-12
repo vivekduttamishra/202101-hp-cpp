@@ -80,12 +80,14 @@ namespace conceptarchitect::data
 
         LinkedList(std::initializer_list<Data> values): LinkedList()
         {
+            
             for(auto value : values)
                 add(value);
         }
 
         LinkedList(const LinkedList &other) : LinkedList()   //calls my other constructor
         {
+            
             //what you write here in private doesn't matter
             //it can even be blank.
             // first = NULL;
@@ -270,6 +272,9 @@ namespace conceptarchitect::data
             }
         };
 
+        
+        
+
         SmartPointer begin()
         {
             return SmartPointer(first);
@@ -286,6 +291,9 @@ namespace conceptarchitect::data
 
             return SmartPointer(n);
         }
+        
+        template<typename T>
+        friend ostream& operator<<(ostream &os, LinkedList<T> &list);
     };
 
 
@@ -301,15 +309,15 @@ namespace conceptarchitect::data
         //     os<< list[i] <<"\t";  //CAUSES A PERFORMANCE ISSUE BECAUSE OF LINEAR NAURE
         //LinkedList<T>::SmartPointer p= list.begin();
 
-        auto p=list.begin(); // C++ 11 feature
+        // auto p=list.begin(); // C++ 11 feature
 
-        while(p){
-            os<< * p <<"\t";
-            p++;
-        }
+        // while(p){
+        //     os<< * p <<"\t";
+        //     p++;
+        // }
 
-        // for (LinkedList<T>::Node *n = list.first; n; n = n->next)
-        //     os << n->value << "\t";
+        for (auto *n = list.first; n; n = n->next)
+            os << n->value << "\t";
 
         os << ")";
         return os;
