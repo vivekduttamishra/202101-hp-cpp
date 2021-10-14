@@ -1,0 +1,24 @@
+starting simulation Different Thread Unsafe Basket	workers:1000	job:10000
+total work done :10000000
+total time taken is :102696
+us
+
+
+starting simulation Common Thread Unsafe Basket	workers:1000	job:10000
+total work done :2693334
+total time taken is :152364
+us
+
+
+starting simulation Different  Thread Safe Basket	workers:1000	job:10000
+total work done :10000000
+total time taken is :168912
+us
+
+
+starting simulation Common Basket Thread Safe Basket	workers:1000	job:10000
+total work done :10000000
+total time taken is :2626352
+us
+
+
